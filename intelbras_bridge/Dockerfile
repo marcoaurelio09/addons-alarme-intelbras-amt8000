@@ -28,10 +28,26 @@ RUN pip3 install --no-cache-dir paho-mqtt --break-system-packages
 # Opción 2: O usar el paquete de Alpine directamente (comentado)
 # RUN apk add --no-cache py3-paho-mqtt
 
-# Instalar bashio
-RUN mkdir -p /usr/lib/bashio && \
-    curl -sSL https://raw.githubusercontent.com/hassio-addons/bashio/main/lib/bashio.sh -o /usr/lib/bashio/bashio.sh && \
-    chmod +x /usr/lib/bashio/bashio.sh
+#--- ESte bloco era o oficial do Addons
+# Instalar bashio.  
+#RUN mkdir -p /usr/lib/bashio && \
+#   curl -sSL https://raw.githubusercontent.com/hassio-addons/bashio/main/lib/bashio.sh -o /usr/lib/bashio/bashio.sh && \
+#   chmod +x /usr/lib/bashio/bashio.sh
+
+
+####Este bloco é o que foi feito a alteração para fazer a instalação completa do bashio
+ENV BASHIO_VERSION=0.17.1
+
+RUN apk add --no-cache curl \
+  && curl -sSL "https://github.com/hassio-addons/bashio/archive/refs/tags/v${BASHIO_VERSION}.tar.gz" \
+     | tar -xz -C /tmp \
+  && mkdir -p /usr/lib/bashio \
+  && cp -R /tmp/bashio-${BASHIO_VERSION}/lib/* /usr/lib/bashio/ \
+  && chmod +x /usr/lib/bashio/bashio \
+  && rm -rf /tmp/bashio-${BASHIO_VERSION}
+####################################################################
+
+
 
 # Clonar el proyecto
 # La ruta /alarme-intelbras es correcta
