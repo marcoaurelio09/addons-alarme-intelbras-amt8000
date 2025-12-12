@@ -40,11 +40,11 @@ ENV BASHIO_VERSION=0.17.1
 
 RUN apk add --no-cache curl \
   && curl -L -o /tmp/bashio.tar.gz "https://github.com/hassio-addons/bashio/archive/refs/tags/v${BASHIO_VERSION}.tar.gz" \
-  && tar -xzf /tmp/bashio.tar.gz -C /tmp \
-  && mkdir -p /usr/lib/bashio \
-  && cp -R /tmp/bashio-${BASHIO_VERSION}/lib/* /usr/lib/bashio/ \
-  && chmod +x /usr/lib/bashio/bashio \
-  && rm -rf /tmp/bashio-${BASHIO_VERSION} /tmp/bashio.tar.gz
+  && tar -xzf /tmp/bashio.tar.gz -C /tmp 
+ # && mkdir -p /usr/lib/bashio \
+ # && cp -R /tmp/bashio-${BASHIO_VERSION}/lib/* /usr/lib/bashio/ \
+ # && chmod +x /usr/lib/bashio/bashio \
+ # && rm -rf /tmp/bashio-${BASHIO_VERSION} /tmp/bashio.tar.gz
 ####################################################################
 
 
