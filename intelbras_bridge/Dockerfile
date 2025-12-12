@@ -39,7 +39,7 @@ RUN pip3 install --no-cache-dir paho-mqtt --break-system-packages
 ENV BASHIO_VERSION=0.17.1
 
 RUN apk add --no-cache curl \
-  && curl -L -o /tmp/bashio.tar.gz "https://github.com/hassio-addons/bashio/archive/refs/tags/v${BASHIO_VERSION}.tar.gz" \
+  && curl -L -o /tmp/bashio.tar.gz https://github.com/hassio-addons/bashio/archive/refs/tags/v0.17.1.tar.gz \
   && tar -xzf /tmp/bashio.tar.gz -C /tmp 
  # && mkdir -p /usr/lib/bashio \
  # && cp -R /tmp/bashio-${BASHIO_VERSION}/lib/* /usr/lib/bashio/ \
